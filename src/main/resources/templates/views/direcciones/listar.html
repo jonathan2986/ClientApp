@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header">
+
+	</header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+	
+	<a class="btn btn-primary btn-sm" th:href="@{/views/direcciones/create}" th:text="'Crear Direccion'" title="Crear Nuevo Registro"></a>
+		<table class="table">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombres</th>
+					<th scope="col">Apellidos</th>
+					<th scope="col">Direcciones</th>
+					<th scope="col">Operaciones</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="direccion:${direcciones}">
+					<th scope="row" th:text="${direccion.id}"></th>
+					<td th:text="${direccion.cliente.nombres}"></td>
+					<td th:text="${direccion.cliente.apellidos}"></td>
+					<td th:text="${direccion.direcciones}"></td>
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/views/direcciones/edit/} + ${direccion.id}" th:text="'Editar Direccion'" title="Editar Registro"></a>
+						<a class="btn btn-danger btn-sm" th:href="@{/views/direcciones/delete/} + ${direccion.id}" th:text="'Eliminar Direccion'" onclick="return confirm('Estas seguro de eliminar el registro?')" title="Eliminar Registro"></a>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+
+</html>
